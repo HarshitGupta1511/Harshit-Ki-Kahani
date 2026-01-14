@@ -1,0 +1,653 @@
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit | Storyteller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Syncopate:wght@400;700&family=Righteous&family=Bangers&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root { --bg: #000000; --accent: #ffae00; }
+        body { background-color: var(--bg); color: #ffffff; font-family: 'Righteous', cursive; overflow-x: hidden; }
+
+        /* GHOST PHOTO BACKGROUND */
+        #flash-photo {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            z-index: -1;
+            width: 100vw; height: 100vh;
+            object-fit: cover; opacity: 0;
+            pointer-events: none;
+            filter: grayscale(1) brightness(0.4) contrast(1.2);
+            transition: opacity 0.5s ease;
+        }
+        .photo-flash-anim { animation: ghost-flash 2.5s ease-in-out; }
+        @keyframes ghost-flash {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+            20% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.1); }
+            80% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.12); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* HOMEPAGE SPECIFIC BACKGROUND IMAGE */
+        .home-bg-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* Replace the URL below with your preferred background image */
+            background-image: url('./tungnath\ mine\ 1.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; /* 25% Opacity as requested */
+            z-index: -1;
+            filter: grayscale(100%);
+        }
+
+        /* PAGE TRANSITIONS */
+        .page-content { transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s; }
+        .hidden-page { display: none !important; opacity: 0; transform: scale(0.95); }
+
+        /* CINEMATIC MARQUEE (Restored to Trendy Gen-Z Style) */
+        .marquee-wrapper { transform: rotate(-7deg) scale(1.2); margin: 120px 0; pointer-events: none; z-index: 10; position: relative; }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .marquee-line { display: flex; white-space: nowrap; font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1; text-transform: uppercase; padding: 10px 0; }
+        .line-1 { animation: scroll-left 15s linear infinite; font-family: 'Bangers', cursive; color: var(--accent); }
+        .line-2 { animation: scroll-right 10s linear infinite; font-family: 'Bungee Outline', cursive; color: white; opacity: 0.5; }
+
+        /* ABOUT SECTION STYLES */
+        .bio-label { font-family: 'Syncopate', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+        .interest-tag { font-family: 'Bungee Outline', cursive; font-size: clamp(2rem, 5vw, 4rem); color: white; opacity: 0.5; transition: 0.3s; line-height: 1; }
+        .interest-tag:hover { opacity: 1; color: var(--accent); transform: scale(1.05); }
+
+        .btn-fancy { background: white; color: black; padding: 1rem 2.5rem; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); transition: 0.3s; font-style: italic; font-weight: 900; }
+        .btn-fancy:hover { background: var(--accent); transform: scale(1.05); }
+
+        /* Photo Frame in About */
+        .about-photo-frame { border: 2px solid var(--accent); position: relative; }
+        .about-photo-frame::after { content: ''; position: absolute; top: 15px; left: 15px; width: 100%; height: 100%; border: 2px solid white; z-index: -1; opacity: 0.3; }
+    </style>
+</head>
+<body class="selection:bg-amber-500 selection:text-black">
+
+    <img id="flash-photo" src="">
+
+    <nav class="fixed top-0 w-full z-[100] p-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center bg-black/50 backdrop-blur-3xl rounded-full border border-white/10 px-8 py-3">
+            <div class="text-xl md:text-2xl font-black text-amber-500 tracking-tighter uppercase" id="nav-brand">HARSHIT'S <span class="text-white">LAB</span></div>
+            <div class="flex items-center space-x-6 md:space-x-10 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em]">
+                <button onclick="showPage('home')" class="hover:text-amber-500 transition">Home</button>
+                <button onclick="showPage('about')" class="hover:text-amber-500 transition">About Me</button>
+                <button onclick="showPage('gallery')" class="hover:text-amber-500 transition">Gallery</button>
+                <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home-page" class="page-content relative">
+        <div class="home-bg-image"></div>
+
+        <section class="min-h-screen flex flex-col items-center justify-center relative px-6 text-center">
+            <h1 id="dynamic-headline" class="text-7xl md:text-[11rem] leading-[0.85] uppercase mb-8 select-none headline-pop"></h1>
+            <p class="text-sm md:text-lg tracking-[0.5em] uppercase text-gray-400 mb-12">Visual Storyteller // Content Creator</p>
+            <button onclick="showPage('gallery')" class="btn-fancy text-2xl">EXPLORE WORK</button>
+        </section>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-line line-1">
+                <span>Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • </span>
+                <span>Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • </span>
+            </div>
+            <div class="marquee-line line-2">
+                <span>Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • </span>
+                <span>Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • Editing • Cinematic • Trendy • Viral Content • Gen-Z Style • Post Production • </span>
+            </div>
+        </div>
+    </main>
+
+    <main id="about-page" class="page-content hidden-page pt-32 px-6 min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-6xl md:text-8xl font-black mb-8 italic text-amber-500">THE MAN <br> BEHIND.</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <span class="bio-label">IDENTITY</span>
+                            <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+                                Harshit is a visual storyteller based in <span class="text-white font-bold">India</span>. At <span class="text-white font-bold">21</span>, he travels to chase moments, turning real experiences into cinematic stories through photography, film, and content creation.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="bio-label">PHILOSOPHY</span>
+                            <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+                                I don’t just capture visuals; I capture the story behind them.
+Every frame is about making people feel the place, the moment, and the emotion — just as it was lived.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="about-photo-frame w-72 h-96 md:w-80 md:h-[450px]">
+                        <img src="./harshit profile.jpg" alt="Harshit" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col space-y-2 mb-20">
+                <span class="bio-label">PASSIONS</span>
+                <span class="interest-tag">TRAVEL</span>
+                <span class="interest-tag">STORYTELLING</span>
+                <span class="interest-tag">VIDEOGRAPHY</span>
+                <span class="interest-tag">PHOTOGRAPHY</span>
+            </div>
+        </div>
+    </main> -->
+
+    <!-- <main id="gallery-page" class="page-content hidden-page pt-32 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-6xl md:text-9xl font-black mb-16 italic tracking-tighter uppercase">The Vault</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> -->
+                <!-- <div class="aspect-video bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>  -->
+                <!-- <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img5.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img6.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img7.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img8.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img9.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img10.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img11.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img12.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img13.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img14.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img15.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img16.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img17.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img18.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img19.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+            </div>
+            <button onclick="showPage('home')" class="mt-20 text-amber-500 hover:text-white transition pb-20">← BACK HOME</button>
+        </div>
+    </main>
+
+    <footer id="contact" class="py-32 px-6 border-t border-white/5 text-center">
+        <h2 class="text-5xl md:text-8xl font-black mb-12 tracking-tighter uppercase">Let's Create Together.</h2>
+        <div class="flex justify-center gap-8 mb-12">
+            <a href="https://www.instagram.com/harshit__1511?igsh=OG44YXl4MGFxMzlj" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-all">
+                <i data-lucide="instagram"></i>
+            </a>
+            <a href="https://youtube.com/@harshitgupta6883?si=orxWMiqtWPs-_QjF" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-all">
+                <i data-lucide="youtube"></i>
+            </a>
+        </div>
+        <a href="mailto:hello@harshit.com" class="text-2xl md:text-5xl border-b-2 border-white pb-2 hover:text-amber-500 hover:border-amber-500 transition-all">guptaharshit1518@gmail.com</a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // BRAND & HEADLINE ENGINE
+        const brands = ["STORIES", "FRAMES", "WORLD", "JOURNAL", "PRODUCTIONS" , "PLAYGROUND"];
+        const taglines = [
+            { first: "CRAFTING", second: "CHAOS." },
+            { first: "SHAPING", second: "STORIES." },
+            { first: "VISIONS", second: "IN MOTION." },
+            { first: "FRAMING", second: "FEELINGS." },
+            { first: "MAKING", second: "IT FEEL." },
+            { first: "DIGITAL", second: "ALCHEMY." }
+        ];
+
+        function setRandomContent() {
+            const brandSuffix = brands[Math.floor(Math.random() * brands.length)];
+            const randomTag = taglines[Math.floor(Math.random() * taglines.length)];
+            document.getElementById('nav-brand').innerHTML = `HARSHIT'S <span class="text-white">${brandSuffix}</span>`;
+            document.getElementById('dynamic-headline').innerHTML = `${randomTag.first} <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-600">${randomTag.second}</span>`;
+        }
+
+        // PHOTO FLASH
+        function triggerPhotoFlash() {
+            const img = document.getElementById('flash-photo');
+            img.classList.remove('photo-flash-anim');
+            void img.offsetWidth; 
+            img.classList.add('photo-flash-anim');
+        }
+        setInterval(triggerPhotoFlash, 12000);
+
+        setRandomContent();
+
+        // PAGE SWITCHER
+        function showPage(pageId) {
+            const pages = ['home-page', 'about-page', 'gallery-page'];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            pages.forEach(p => {
+                const el = document.getElementById(p);
+                if (p === `${pageId}-page`) {
+                    el.style.display = 'block';
+                    setTimeout(() => el.classList.remove('hidden-page'), 50);
+                } else {
+                    el.classList.add('hidden-page');
+                    setTimeout(() => el.style.display = 'none', 800);
+                }
+            });
+            if (pageId === 'home') setRandomContent();
+        }
+    </script>
+</body>
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Harshit | Storyteller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Syncopate:wght@400;700&family=Righteous&family=Bangers&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root { 
+            --bg: #000000; 
+            --accent: #ffae00; 
+            --speed-1: 15s;
+            --speed-2: 10s;
+        }
+
+        /* Responsive Speed: Moves faster on small screens to maintain energy */
+        @media (max-width: 768px) {
+            :root {
+                --speed-1: 8s;
+                --speed-2: 6s;
+            }
+            /* Hide custom cursor on touch devices to avoid lag */
+            #custom-cursor, #cursor-lens { display: none !important; }
+            html, body, a, button { cursor: auto !important; }
+        }
+
+        body { background-color: var(--bg); color: #ffffff; font-family: 'Righteous', cursive; overflow-x: hidden; width: 100%; }
+
+        /* GHOST PHOTO BACKGROUND */
+        #flash-photo {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            z-index: -1;
+            width: 100vw; height: 100vh;
+            object-fit: cover; opacity: 0;
+            pointer-events: none;
+            filter: grayscale(1) brightness(0.4) contrast(1.2);
+            transition: opacity 0.5s ease;
+        }
+        .photo-flash-anim { animation: ghost-flash 2.5s ease-in-out; }
+        @keyframes ghost-flash {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+            20% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.1); }
+            80% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.12); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* HOMEPAGE SPECIFIC BACKGROUND IMAGE */
+        .home-bg-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('./bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; 
+            z-index: -1;
+            filter: grayscale(100%);
+        }
+
+        /* PAGE TRANSITIONS */
+        .page-content { transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s; width: 100%; }
+        .hidden-page { display: none !important; opacity: 0; transform: scale(0.95); }
+
+        /* CINEMATIC MARQUEE */
+        .marquee-wrapper { 
+            transform: rotate(-7deg) scale(1.2); 
+            margin: 100px 0; 
+            pointer-events: none; 
+            z-index: 10; 
+            position: relative; 
+            overflow: hidden;
+            width: 140%;
+            left: -20%;
+        }
+        @keyframes scroll-left { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+        @keyframes scroll-right { 0% { transform: translate3d(-50%, 0, 0); } 100% { transform: translate3d(0, 0, 0); } }
+        
+        .marquee-line { display: flex; white-space: nowrap; font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.2; text-transform: uppercase; padding: 10px 0; }
+        .line-1 { animation: scroll-left var(--speed-1) linear infinite; font-family: 'Bangers', cursive; color: var(--accent); }
+        .line-2 { animation: scroll-right var(--speed-2) linear infinite; font-family: 'Bungee Outline', cursive; color: white; opacity: 0.5; }
+
+        /* ABOUT STYLES */
+        .bio-label { font-family: 'Syncopate', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+        .interest-tag { font-family: 'Bungee Outline', cursive; font-size: clamp(2rem, 5vw, 4rem); color: white; opacity: 0.5; transition: 0.3s; line-height: 1; }
+        .interest-tag:hover { opacity: 1; color: var(--accent); transform: scale(1.05); }
+
+        .btn-fancy { background: white; color: black; padding: 1rem 2.5rem; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); transition: 0.3s; font-style: italic; font-weight: 900; }
+        .btn-fancy:hover { background: var(--accent); transform: scale(1.05); }
+
+        .about-photo-frame { border: 2px solid var(--accent); position: relative; }
+        .about-photo-frame::after { content: ''; position: absolute; top: 15px; left: 15px; width: 100%; height: 100%; border: 2px solid white; z-index: -1; opacity: 0.3; }
+
+        /* CUSTOM CURSOR SYSTEM */
+        html, body { cursor: none !important; }
+        a, button, [onclick] { cursor: none !important; }
+        #custom-cursor {
+            position: fixed; width: 12px; height: 12px; background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 9999; transition: transform 0.2s ease-out, opacity 0.3s; transform: translate(-50%, -50%);
+        }
+        #cursor-lens {
+            position: fixed; width: 80px; height: 80px; border: 1px solid rgba(255, 174, 0, 0.5); border-radius: 50%;
+            pointer-events: none; z-index: 9998; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: width 0.3s, height 0.3s, opacity 0.3s; transform: translate(-50%, -50%);
+        }
+        #cursor-lens::before { content: ''; position: absolute; width: 20px; height: 1px; background: var(--accent); opacity: 0.5; }
+        #cursor-lens::after { content: ''; position: absolute; width: 1px; height: 20px; background: var(--accent); opacity: 0.5; }
+        .lens-active #cursor-lens { opacity: 1; width: 110px; height: 110px; border-color: var(--accent); }
+        .lens-active #custom-cursor { transform: translate(-50%, -50%) scale(0.5); background: #fff; }
+    </style>
+</head>
+<body class="selection:bg-amber-500 selection:text-black">
+
+    <div id="custom-cursor"></div>
+    <div id="cursor-lens"></div>
+    <img id="flash-photo" src="">
+
+    <nav class="fixed top-0 w-full z-[100] p-4 md:p-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center bg-black/60 backdrop-blur-3xl rounded-3xl md:rounded-full border border-white/10 px-6 md:px-8 py-3 gap-2 md:gap-0">
+            <div class="text-xl md:text-2xl font-black text-amber-500 tracking-tighter uppercase" id="nav-brand">HARSHIT'S <span class="text-white">LAB</span></div>
+            <div class="flex items-center space-x-5 md:space-x-10 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em]">
+                <button onclick="showPage('home')" class="hover:text-amber-500 transition">Home</button>
+                <button onclick="showPage('about')" class="hover:text-amber-500 transition whitespace-nowrap">About Me</button>
+                <button onclick="showPage('gallery')" class="hover:text-amber-500 transition">Gallery</button>
+                <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home-page" class="page-content relative">
+        <div class="home-bg-image"></div>
+        <section class="min-h-screen flex flex-col items-center justify-center relative px-6 text-center pt-24">
+            <h1 id="dynamic-headline" class="text-6xl md:text-[11rem] leading-[0.9] md:leading-[0.85] uppercase mb-8 select-none headline-pop"></h1>
+            <p class="text-[10px] md:text-lg tracking-[0.4em] md:tracking-[0.5em] uppercase text-gray-400 mb-12">Visual Storyteller // Content Creator</p>
+            <button onclick="showPage('gallery')" class="btn-fancy text-xl md:text-2xl">EXPLORE WORK</button>
+        </section>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-line line-1">
+                <span>Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading</span>
+                <span>Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading • Photographer • Storyteller • Music Videos • Commercials • 4K Videos • Color Grading</span>
+            </div>
+            <div class="marquee-line line-2">
+                <span>Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production</span>
+                <span>Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production • Editing • Cinematic • Trendy • Viral Content •  Post Production</span>
+            </div>
+        </div>
+    </main>
+
+    <main id="about-page" class="page-content hidden-page pt-32 px-6 min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-6xl md:text-8xl font-black mb-8 italic text-amber-500">THE MAN <br> BEHIND.</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <span class="bio-label">IDENTITY</span>
+                            <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+                                Harshit is a visual storyteller based in <span class="text-white font-bold">India</span>. At <span class="text-white font-bold">21</span>, he travels to chase moments, turning real experiences into cinematic stories through photography, film, and content creation.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="bio-label">PHILOSOPHY</span>
+                            <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+                                I don’t just capture visuals; I capture the story behind them. Every frame is about making people feel the place, the moment, and the emotion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="about-photo-frame w-72 h-96 md:w-80 md:h-[450px]">
+                        <img src="./harshit profile.jpg" alt="Harshit" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col space-y-2 mb-20">
+                <span class="bio-label">PASSIONS</span>
+                <span class="interest-tag">TRAVEL</span>
+                <span class="interest-tag">STORYTELLING</span>
+                <span class="interest-tag">VIDEOGRAPHY</span>
+                <span class="interest-tag">PHOTOGRAPHY</span>
+            </div>
+        </div>
+    </main>
+
+    <main id="gallery-page" class="page-content hidden-page pt-32 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-6xl md:text-9xl font-black mb-16 italic tracking-tighter uppercase">The Vault</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <!-- <div class="aspect-video bg-zinc-900 border-2 border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div> -->
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img5.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img6.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img7.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img8.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img9.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img10.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img11.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img12.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img13.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img14.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img15.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img16.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img17.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img18.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-white/5 hover:border-amber-500 transition-all overflow-hidden group">
+                    <img src="./img19.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+
+                </div>
+            <button onclick="showPage('home')" class="mt-20 text-amber-500 hover:text-white transition pb-20">← BACK HOME</button>
+        </div>
+    </main>
+
+    <footer id="contact" class="py-24 md:py-32 px-6 border-t border-white/5 text-center">
+        <h2 class="text-4xl md:text-8xl font-black mb-12 tracking-tighter uppercase">Let's Create Together.</h2>
+        <div class="flex justify-center gap-8 mb-12">
+            <a href="https://www.instagram.com/harshit__1511" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-all">
+                <i data-lucide="instagram"></i>
+            </a>
+            <a href="https://youtube.com/@harshitgupta6883" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-amber-500 hover:text-black transition-all">
+                <i data-lucide="youtube"></i>
+            </a>
+        </div>
+        <a href="mailto:guptaharshit1518@gmail.com" class="text-lg md:text-5xl border-b-2 border-white pb-2 hover:text-amber-500 transition-all break-all">guptaharshit1518@gmail.com</a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // BRAND & HEADLINE ENGINE
+        const brands = ["STORIES", "FRAMES", "WORLD", "JOURNAL", "PRODUCTIONS", "PLAYGROUND"];
+        const taglines = [
+            { first: "CRAFTING", second: "CHAOS." }, { first: "SHAPING", second: "STORIES." },
+            { first: "VISIONS", second: "IN MOTION." }, { first: "FRAMING", second: "FEELINGS." },
+            { first: "MAKING", second: "IT FEEL." }, { first: "DIGITAL", second: "ALCHEMY." }
+        ];
+
+        function setRandomContent() {
+            const brandSuffix = brands[Math.floor(Math.random() * brands.length)];
+            const randomTag = taglines[Math.floor(Math.random() * taglines.length)];
+            document.getElementById('nav-brand').innerHTML = `HARSHIT'S <span class="text-white">${brandSuffix}</span>`;
+            document.getElementById('dynamic-headline').innerHTML = `${randomTag.first} <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-600">${randomTag.second}</span>`;
+        }
+
+        // PHOTO FLASH
+        function triggerPhotoFlash() {
+            const img = document.getElementById('flash-photo');
+            if (img && img.src !== "") {
+                img.classList.remove('photo-flash-anim');
+                void img.offsetWidth; 
+                img.classList.add('photo-flash-anim');
+            }
+        }
+        setInterval(triggerPhotoFlash, 12000);
+        setRandomContent();
+
+        // PAGE SWITCHER
+        function showPage(pageId) {
+            const pages = ['home-page', 'about-page', 'gallery-page'];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            pages.forEach(p => {
+                const el = document.getElementById(p);
+                if (p === `${pageId}-page`) {
+                    el.style.display = 'block';
+                    setTimeout(() => el.classList.remove('hidden-page'), 50);
+                } else {
+                    el.classList.add('hidden-page');
+                    setTimeout(() => el.style.display = 'none', 800);
+                }
+            });
+            if (pageId === 'home') setRandomContent();
+        }
+
+        // CURSOR LOGIC
+        const cursor = document.getElementById('custom-cursor');
+        const lens = document.getElementById('cursor-lens');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            lens.style.left = e.clientX + 'px'; lens.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('img, button, a, .interest-tag')) {
+                document.body.classList.add('lens-active');
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('img, button, a, .interest-tag')) {
+                document.body.classList.remove('lens-active');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
